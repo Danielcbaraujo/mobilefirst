@@ -1,0 +1,197 @@
+.cabeçalho__menu-hamburguer {
+    width: 24px;
+    height: 24px;
+    background-image: url("../img/Menu.svg");
+    background-repeat: no-repeat; /*colocamos ele para ele nao repetir o menu hambuer*/
+    background-position: center; /* e depois colocamos para centralizar ele*/
+    display: inline-block;/*inline e block para permirtir ajustes de altura e largura */
+}
+/*o TIL VAI PROCURAR  A CLASSE QUE VEM EXATAMENTE .CONTAINER__BOTAO E O > VAI
+    PROCRURAR DENTRO DO .CABEÇALHO__MEU-HAMBURGUER  UME ELEMENTO QUE ESTEJA DENTRO DELE*/
+.container__botao:checked~.container__rotulo>.cabeçalho__menu-hamburguer{
+  background-image: url("../img/1.svg"); /* fazemos tipo uma chamada quando apertamos o menu 
+  hamburer nao é que ele desapareceu mas é porque os risquinhos são brancos entao temos que trocar a cor para o azul degrade*/
+
+}
+
+.container__botao:checked~.container__rotulo{ 
+    background:var(--azul-degrade);
+}
+
+
+.cabeçalho {/*pegamos as divis filhas  e aplicamos o flex box */
+    background-color: var(--branco);
+    display: flex;
+    justify-content: space-between;/* separa cada elemento com mesmo espaço entre eles  por isso o meunu ficou  separado*/
+    align-items: center;
+    position: relative; /*position relative libera outras opções para vc posicionar "top, lef, botto"
+}
+
+.container{ /*lembre-se que o flex box é aplicado para os filhos do elemento se tiver filhos dos filhos vc 
+    vai ter que aplicar o flex box pra eles  ta ligado por isso que  aplicou o flex box no cabeçalho 
+    e ele não funcionou para os filhos dos filho por iss0 usamos o flex box aqui denovo kkkk*/
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.container__imagem {  /*quando colocamos o miseravel nao vai  ficar avacalhado pois
+    ele vai começar a repetir a imagem*/
+    padding: 1em;
+}
+
+.lista-menu {
+    display: none;
+    position: absolute;/* o positon absolute ele permite que vc movimente seu elemento
+    que de acordo com o elemento que veio antes que é o pai que  esta com positon: relative nesse caso
+    é o .cabeçalho , isto é,  agora podemos movimentar ele de acordo com o cabeçalho*/
+    top: 100%;
+    width: 60vw;
+}
+
+.container__botao:checked~.lista-menu {/* o ~ é um combinador do css
+    ; é onde podemos chegar mais proximos de uma condicional  " essa sequencia quer dizer o 
+     seguinte se container__ botao for checado vc  vai buscar o lista -menu*/
+    display: block;
+}
+
+.lista-menu__titulo,
+.lista-menu__item {
+    padding: 1em;
+    background-color: var(--branco);
+}
+
+.lista-menu__titulo {
+    color: var(--laranja);
+    font-weight: 700;
+}
+
+.lista-menu__link {
+    background: var(--azul-degrade);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.container__botao {/* com isso tiramos a caixinha de marcacação do chekbosx*/
+    display: none;
+}
+
+.container__titulo {/* como estamos   contruindo a media queries aqui embaixo colocamos para  o titulo nao parecer
+    e na media query aqui debaixo um display:block
+    display: none;*/
+    display: none;
+}
+
+.opções {
+    display: none;
+}
+
+.container__texto{
+    display:none;
+}
+
+
+@media screen and (min-width: 1024px) {/*quando estamos fazendo  um mobile first
+    usamos o min-width se fosse pra fazer o site de no desktop para usamos o max-widthe*/
+
+    .container__titulo,
+    .container__titulo--negrito {
+        font-family: var(--fonte-secundario);
+        font-size: 30px;
+    }
+
+    .container__titulo {
+        font-weight: 400;
+        display: block; /*aqui o display block para aparecer quando estiver no 1024 px*/
+    }
+
+    .container__titulo--negrito {
+        font-weight: 700;
+    }
+
+    .opções {
+        display: flex;
+    }
+
+    .opções__item {
+        padding: 0 1em;
+        text-transform: uppercase;
+    }
+
+    .opções__link {
+        text-decoration: none;
+        color: var(--preto);
+    }
+
+    .container__imagem-transparente {
+        display: none;
+    }
+
+    .cabeçalho__menu-hamburguer {
+        display: none;
+    }
+
+    .opções__botão:checked~.lista-menu { /*vai ocupar so a largura  do espaço dele com este auto*/
+        display: block;
+        width: auto;
+    }
+
+    .opções__botão {
+        display: none;
+    }
+
+    .opções__botão:checked~.opções__rotulo>.opções__item{
+        background: var(--azul-degrade);
+        color:var(--branco);
+
+    }
+
+    .opções__item{
+        padding: 2em 1em;
+    }
+
+
+    .lista-menu__item:hover{
+        background: var(--azul-degrade);
+    }
+
+    .lista-menu__item:hover>.lista-menu__link{
+        -webkit-text-fill-color: var(--branco);
+        text-decoration: none;
+    }
+    
+    
+
+}
+
+@media screen and (min-width:1728px){
+
+    .container__link {
+        display: flex;
+        align-items: center;
+        color: var(--preto);
+    }
+
+    .cabeçalho{
+        padding: 0 2em;
+    }
+
+
+    .opções{
+        margin-right: auto; /* ele vai  empurrar todos os elemento para esquerda */
+    }
+
+    .container__texto{
+        display: block;
+    }
+
+    .container__texto{
+        display:block;
+    }
+
+}
